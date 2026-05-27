@@ -9,6 +9,6 @@ exports.getRecommendations = async (req, res) => {
         const recommendations = await recommendationService.generateRecommendations(userProfile);
         res.json({ recommendations });
     } catch (error) {
-        res.status(500).json({ error: 'Internal server error' });
+        res.status(500).json({ error: 'Internal server error', details: error.message });
     }
 };

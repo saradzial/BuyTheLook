@@ -1,11 +1,11 @@
 require('dotenv').config();
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-const { GoogleGenerativeAI } = require('@google/generative-ai');
+if (process.env.NODE_ENV !== 'production') {
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+}const { GoogleGenerativeAI } = require('@google/generative-ai');
 const products = require('../../data/products.json');
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Parse comma-separated free text into array of lowercase tokens
 function parseTokens(str) {
     if (!str) return [];
     return str.split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
@@ -20,11 +20,11 @@ function scoreProduct(p, profile) {
 
     const styleScore = styleTokens.length
         ? p.style_tags.filter(t => styleTokens.some(s => t.includes(s) || s.includes(t))).length / styleTokens.length
-        : 0.5; // neutral if not specified
+        : 0.5;
 
     const colorScore = colorTokens.length
         ? p.colors.filter(c => colorTokens.some(s => c.includes(s) || s.includes(c))).length / colorTokens.length
-        : 0.5; // neutral if not specified
+        : 0.5; 
 
     const WEIGHTS = occasion ? { occasion: 0.4, style: 0.35, color: 0.25 } : { occasion: 0, style: 0.55, color: 0.45 };
     return (occasionScore * WEIGHTS.occasion) + (styleScore * WEIGHTS.style) + (colorScore * WEIGHTS.color);
