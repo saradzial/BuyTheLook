@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuyTheLook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <header>
+    <h1>BuyTheLook</h1>
+    <p>Your AI-powered personal stylist</p>
+  </header>
+
+  <main>
+    <section class="form-section">
+      <h2>Your style profile</h2>
+      <p class="form-subtitle">Tell us about yourself — the more you share, the better the picks.</p>
+
+      <form id="profileForm">
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Age</label>
+            <input type="number" id="age" placeholder="e.g. 28"/>
+          </div>
+
+          <div class="field">
+            <label>Budget max ($)</label>
+            <input type="number" id="budget_max" placeholder="e.g. 300"/>
+          </div>
+
+          <div class="field full">
+            <label>Occasion</label>
+            <select id="occasion">
+              <option value="">Select occasion</option>
+              <option value="work_from_home">Work from home</option>
+              <option value="office">Office</option>
+              <option value="weekend">Weekend</option>
+              <option value="dinner">Dinner</option>
+              <option value="date">Date</option>
+              <option value="casual_office">Casual office</option>
+              <option value="errands">Errands</option>
+              <option value="vacation">Vacation</option>
+              <option value="brunch">Brunch</option>
+            </select>
+          </div>
+
+          <div class="field full">
+            <label>Style preferences</label>
+            <input type="text" id="style_preferences" placeholder="e.g. minimalist, streetwear, bold..."/>
+          </div>
+
+          <div class="field full">
+            <label>Favorite colors</label>
+            <input type="text" id="favorite_colors" placeholder="e.g. black, beige, navy..."/>
+          </div>
+
+          <div class="field full">
+            <label>Colors to avoid</label>
+            <input type="text" id="avoid_colors" placeholder="e.g. neon pink, gold..."/>
+          </div>
+
+        </div>
+
+        <button type="submit" id="submitBtn">
+          <span id="btnText">Reveal my recommendations</span>
+          <span id="btnLoader" class="loader hidden"></span>
+        </button>
+      </form>
+    </section>
+
+    <div class="results-panel">
+      <div class="results-placeholder" id="resultsPlaceholder">
+        <div class="results-placeholder-icon">✨</div>
+        <p>Your top 5 curated picks<br/>will appear here.</p>
+      </div>
+
+      <section class="results-section hidden" id="resultsSection">
+        <div class="results-header">
+          <h2>Recommendations</h2>
+          <p>Your top 5 curated picks, just for you.</p>
+        </div>
+        <div class="cards" id="cards"></div>
+      </section>
+
+      <div class="error hidden" id="errorMsg"></div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

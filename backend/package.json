@@ -1,0 +1,17 @@
+{
+  "name": "buy-the-look",
+  "version": "1.0.0",
+  "description": "Personalized styling recommendation engine",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "test": "node tests/recommendation.test.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.2"
+  }
+}
